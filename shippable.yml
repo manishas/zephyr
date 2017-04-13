@@ -7,7 +7,6 @@ env:
         - SDK=0.9
         - ZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk-0.9
         - ZEPHYR_GCC_VARIANT=zephyr
-        - USE_CCACHE=1
     matrix:
         - ARCH=x86
           #- ARCH=arm
@@ -18,9 +17,6 @@ env:
 build:
     ci:
       - sudo apt-get install git make gcc g++ python3-ply ncurses-dev python-yaml python ccache
-      - export CCACHE_DIR=${SHIPPABLE_BUILD_DIR}/ccache/${ARCH}/.ccache
-      - echo ${CCACHE_DIR}
-      - ccache -s
       - free
       - lscpu
       - if [ !-d ${ZEPHYR_SDK_INSTALL_DIR} ]; then wget https://github.com/zephyrproject-rtos/meta-zephyr-sdk/releases/download/${SDK}/zephyr-sdk-${SDK}-setup.run; chmod +x zephyr-sdk-${SDK}-setup.run; sudo ./zephyr-sdk-${SDK}-setup.run --quiet -- -d ${ZEPHYR_SDK_INSTALL_DIR}; fi;
@@ -28,4 +24,4 @@ build:
       - source zephyr-env.sh
       - ./scripts/sanitycheck -a ${ARCH} --inline-logs  || ./scripts/sanitycheck -a ${ARCH} --inline-logs --only-failed --outdir=out-2nd-pass
       - cp ./scripts/sanity_chk/last_sanity.csv shippable/testresults/
-      - ccache -s
+
