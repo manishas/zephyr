@@ -16,10 +16,6 @@ env:
           #- ARCH=riscv32
 
 build:
-    cache: true
-    cache_dir_list:
-        - /opt/zephyr-sdk-${SDK}
-        - ${SHIPPABLE_BUILD_DIR}/ccache
     ci:
       - sudo apt-get install git make gcc g++ python3-ply ncurses-dev python-yaml python ccache
       - export CCACHE_DIR=${SHIPPABLE_BUILD_DIR}/ccache/${ARCH}/.ccache
