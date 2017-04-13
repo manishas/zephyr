@@ -19,7 +19,7 @@ build:
       - sudo apt-get install git make gcc g++ python3-ply ncurses-dev python-yaml python ccache
       - free
       - lscpu
-      - if [ !-d ${ZEPHYR_SDK_INSTALL_DIR} ]; then wget https://github.com/zephyrproject-rtos/meta-zephyr-sdk/releases/download/${SDK}/zephyr-sdk-${SDK}-setup.run; chmod +x zephyr-sdk-${SDK}-setup.run; sudo ./zephyr-sdk-${SDK}-setup.run --quiet -- -d ${ZEPHYR_SDK_INSTALL_DIR}; fi;
+      - if [ ! -d ${ZEPHYR_SDK_INSTALL_DIR} ]; then wget https://github.com/zephyrproject-rtos/meta-zephyr-sdk/releases/download/${SDK}/zephyr-sdk-${SDK}-setup.run; chmod +x zephyr-sdk-${SDK}-setup.run; sudo ./zephyr-sdk-${SDK}-setup.run --quiet -- -d ${ZEPHYR_SDK_INSTALL_DIR}; fi;
       - mkdir -p shippable/testresults
       - source zephyr-env.sh
       - ./scripts/sanitycheck -a ${ARCH} --inline-logs  || ./scripts/sanitycheck -a ${ARCH} --inline-logs --only-failed --outdir=out-2nd-pass
