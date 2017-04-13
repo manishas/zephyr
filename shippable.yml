@@ -31,5 +31,5 @@ build:
       - mkdir -p shippable/testresults
       - source zephyr-env.sh
       - ./scripts/sanitycheck -a ${ARCH} --inline-logs  || ./scripts/sanitycheck -a ${ARCH} --inline-logs --only-failed --outdir=out-2nd-pass
-      - cp ./scripts/sanity_chk/last_sanity.xml shippable/testresults/
+      - cp ./scripts/sanity_chk/last_sanity.csv shippable/testresults/
       - ccache -s
